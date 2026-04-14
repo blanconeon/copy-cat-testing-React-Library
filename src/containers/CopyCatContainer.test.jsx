@@ -1,5 +1,5 @@
 import { CopyCatContainer } from "./CopyCatContainer";
-import "regenerator-runtime";
+
 
 
 it("Should display copied text", () => {
