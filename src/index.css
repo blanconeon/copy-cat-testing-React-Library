@@ -1,0 +1,44 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* The main lesson
+
+For copied course projects, default starter CSS is often the first thing to remove.
+
+Vite gave you a polished starter stylesheet for its demo app, but your project already has its own visual rules.
+
+What you should keep in index.css
+
+For this project, a very safe version is:
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+That gives React a clean page to render into without fighting your component styles.
+
+Why your project works now
+
+Because now:
+
+main.jsx mounts correctly
+CopyCatContainer renders correctly
+CopyCat controls the visual styling
+index.css is no longer overriding layout
+What to remember for future projects
+
+When moving code from a teaching environment into Vite, check these first:
+
+index.html
+entry file (main.jsx or index.js)
+mount id (root or app)
+default CSS from the starter template
+
+Those are the usual friction points.*/
