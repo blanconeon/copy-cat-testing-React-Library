@@ -1,6 +1,7 @@
 import { CopyCat } from "./CopyCat";
 import React from 'react';
 import {render, screen} from '@testing-library/react' 
+import { expect } from "vitest";
 
 
 it("Displays the provided name", () => {
@@ -13,6 +14,16 @@ expect(header).toHaveTextContent("Copy Cat Mack");
 
 
 it("Should display input text in paragraph when isCopying is set to true", () => {
+render(<CopyCat name={"Mack"} value={"Here is an Input"} handleChange={()=>{}} toggleTape={()=>{}} isCopying={true} />); // The props you pass when you render the component in your test are only for that specific test instance. The test is isolated from the real app. so value is not available as value in the test. 
+
+// test the simultaneous feedback from textbox to P
+
+// verify that the input value displayed in the textbox is the same as the value props passed to copyCat commponent.
+ const inputNode= screen.getByRole("textbox");
+ expect(inputNode).toHaveValue("Here is an Input");
+ // verify that the rendered P has the text "here is an input"
+ const paragraph = screen.getByText("Here is an Input");
+ expect(paragraph).toBeInTheDocument(); // toBeInDocument does not accept arguments
 
 });
 
