@@ -45,8 +45,34 @@ await userEvent.click(imgNode);
 
 
 
-it("Should display copied text after removing tape", () => {
+it("Should display copied text after removing tape", async () => {
+  render(<CopyCatContainer />);
 
+// First grabs textbox and then userEvent writes in it
+const input = screen.getByRole("textbox");
+// testing logic to simulate user interaction. 
+await userEvent.type(input, "Eventually this will appear");
+
+// then we grab P and ensure the text from previous step has been rendered in a P
+const paragraph = await screen.findByText("Eventually this will appear"); //Rememeber findByText is asyc and getByText is not.. Rmemeber this line is async because it awaits for the text to appear as a consequence of the input above. 
+expect(paragraph).toBeInTheDocument();
+
+
+// grabs button where img is and mimics click- to make quiteCat
+const imgNode = screen.getByRole("button");
+await userEvent.click(imgNode);
+
+//Use wait for and queryByText to await for the P element to be deleted. frist it attemtpts to grab the p  then it confirms it does not exist
+  await waitFor(() => {
+    const deletedText = screen.queryByText('Eventualy this will appear');
+    expect(deletedText).toBeNull();
+  });
+
+  // mimic click again so that copyCat is activated, no need to grab the button again we did that above.
+    await userEvent.click(imgNode);
+    // also no need to grab the paragraph its been grabbed already.
+    expect(paragraph).toBeInTheDocument();
+    
 });
 
 
