@@ -41,3 +41,16 @@ const paragraph = screen.queryByText("here is another input");
 expect(paragraph).not.toBeInTheDocument();
 
 });
+
+
+
+/* You can test similar behaviors in `CopyCat`, but with a key difference:
+
+- In `CopyCat`, you test how it **renders** based on the props you give it. You control the props directly, so you’re not testing user interaction or state changes—just how the component displays what it receives.
+- In `CopyCatContainer`, you test the **full flow**: user interaction, state updates, and how those changes are reflected in the UI. This is closer to how a real user experiences the app.
+
+So, while the outcomes may look similar, the tests serve different purposes. Testing both ensures each part works on its own and together.
+
+In presentational component tests, you control the component by passing props directly. You don’t use userEvent because presentational components don’t manage their own state—they just display what they receive.
+
+userEvent is used in container or parent component tests, where user actions trigger state changes and update the UI. Presentational components are tested by changing props and checking the output.*/
